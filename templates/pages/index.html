@@ -1,0 +1,44 @@
+ {% extends 'base.html' %}
+ {% block content %}
+ <h1>Cars Part</h1>
+
+ <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Car Name</th>
+      <th scope="col">Car Model</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for car in cars %}
+    <tr>
+      <th scope="row">{{car.id}}</th>
+      <td><a href="{% url 'car_piece' car.id %}">{{car.car_name}}</a></td>
+      <td>{{car.car_model}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</table>
+<h1>News Part</h1>
+ <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">News Type</th>
+      <th scope="col">#Topic</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for n in news1 %}
+    <tr>
+      <th scope="row">{{n.id}}</th>
+      <td><a href="{% url 'news_page' n.id %}">{{n.type}}</a></td>
+      <td>{{n.get_topics_count}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</table>
+ {% endblock content %}

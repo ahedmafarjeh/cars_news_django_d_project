@@ -1,0 +1,39 @@
+ {% extends 'base.html' %}
+ {% block content %}
+ <head>
+     <title>{{car.car_name}} - {{c.car.car_model}}</title>
+ </head>
+ <h1>{{car.car_name}} </h1>
+ <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Piece Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Availability</th>
+      <th scope="col">#Post</th>
+       <th scope="col">Last Post</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for c in car.topics.all%}
+    <tr>
+      <td><a href="{% url 'comments' car.pk c.pk %}">{{c.piece_name}}</a></td>
+      <td>{{c.price}}</td>
+      <td>{{c.is_available}}</td>
+      <td>{{c.get_posts_count}}</td>
+      <td>
+          {% if c.get_last_post%}
+          By {{c.get_last_post.created_by.username}} At {{c.get_last_post.created_date}}
+          {% else %}
+          <small>No Posts</small>
+          {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</table>
+ <a href="{% url 'add_piece' car.id %}" class='btn btn-primary'>Add</a>
+
+ {% endblock content %}
